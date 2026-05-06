@@ -94,7 +94,7 @@ function Login({ onLogin }) {
         .login-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(22, 101, 52, 0.4));
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(15, 23, 42, 0.3));
         }
 
         .login-card {
@@ -107,6 +107,11 @@ function Login({ onLogin }) {
           display: flex;
           flex-direction: column;
           gap: 2rem;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
         .login-header h1 {
