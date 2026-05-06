@@ -361,7 +361,7 @@ function LaporanDetail({ user }) {
             <div>
               <h3 className="header-title">Laporan {reportTitle}</h3>
               <p className="header-sub">
-                {meta.perangkatDaerah || user?.name || 'Sekretariat Daerah Provinsi Gorontalo'}
+                {meta.perangkatDaerah || user?.name || 'Biro Organisasi Provinsi Gorontalo'}
                 {meta.updatedAt && (
                   <span className="data-badge">
                     <CheckCircle size={11} />

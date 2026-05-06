@@ -73,7 +73,7 @@ function Login({ onLogin }) {
         </form>
 
         <div className="login-footer">
-          &copy; 2026 Sekretariat Daerah Provinsi Gorontalo
+          &copy; 2026 Biro Organisasi Provinsi Gorontalo
         </div>
       </motion.div>
 
