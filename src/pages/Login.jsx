@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, User, ShieldCheck } from 'lucide-react';
 
+import { USERS } from '../constants/opdData';
+
 function Login({ onLogin }) {
   useEffect(() => {
     document.title = "Login | e-SETDA Provinsi Gorontalo";
@@ -14,13 +16,10 @@ function Login({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Mock user login logic
-    if (username === 'admin' && password === '12345') {
-      onLogin({ name: 'Admin Setda', role: 'ADMIN', code: 'SETDA' });
-    } else if (username === 'opd_dikbud' && password === '12345') {
-      onLogin({ name: 'Dinas Pendidikan', role: 'OPD', code: 'DIKBUDPORA' });
-    } else if (username === 'opd_dinkes' && password === '12345') {
-      onLogin({ name: 'Dinas Kesehatan', role: 'OPD', code: 'DINKES' });
+    const user = USERS.find(u => u.username === username && u.password === password);
+    
+    if (user) {
+      onLogin({ name: user.name, role: user.role, code: user.code });
     } else {
       setError('Username atau password salah.');
     }

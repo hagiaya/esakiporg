@@ -21,6 +21,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+import { OPD_LIST } from '../constants/opdData';
+
 function Admin({ user }) {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState('daftar-opd');
@@ -91,47 +93,24 @@ function Admin({ user }) {
   const hasRenstra = renstraData.length > 0;
   const hasPK = pkData.length > 0;
   const opdName = renstraMeta.perangkatDaerah || pkMeta.perangkatDaerah || user?.name || 'Perangkat Daerah';
-  const opdShort = opdName.split(' ').slice(0, 2).join(' ');
 
-  const opdList = [
-    {
-      id: 1,
-      name: opdShort || 'Sekretariat Daerah',
-      code: renstraMeta.perangkatDaerah ? 'INPUT-OPD' : 'SETDA',
-      status: hasRenstra && hasPK ? 'Verifikasi Selesai' : hasRenstra || hasPK ? 'Dalam Review' : 'Draft',
-      lead: pkMeta.pejabat || 'Drs. H. Darda Daraba, M.Si',
+  // Map OPD_LIST to include status and mock data
+  const opdList = OPD_LIST.map(opd => {
+    const isMockFirst = opd.id === 1;
+    const hasData = isMockFirst && hasRenstra && hasPK;
+    
+    return {
+      ...opd,
+      status: hasData ? 'Verifikasi Selesai' : (isMockFirst && (hasRenstra || hasPK) ? 'Dalam Review' : 'Draft'),
       data: {
-        visi: renstraData[0]?.tujuan || 'Terwujudnya Gorontalo yang Maju, Mandiri dan Sejahtera Melalui Penataan Birokrasi yang Akuntabel.',
-        sasaran: renstraData[0]?.sasaran || 'Meningkatkan Kualitas Penyelenggaraan Pemerintahan Daerah',
-        ikuCount: totalIKU || 0,
-        pkStatus: hasPK && pkMeta.pejabat ? 'Sudah TTD' : hasPK ? 'Belum TTD' : 'Belum Input',
+        visi: isMockFirst && renstraData[0]?.tujuan ? renstraData[0].tujuan : `Terwujudnya ${opd.name} yang Akuntabel dan Transparan.`,
+        sasaran: isMockFirst && renstraData[0]?.sasaran ? renstraData[0].sasaran : `Meningkatkan Kualitas Kinerja ${opd.name}`,
+        ikuCount: isMockFirst ? (totalIKU || 0) : (opd.id % 5 + 5),
+        pkStatus: isMockFirst && hasPK ? (pkMeta.pejabat ? 'Sudah TTD' : 'Belum TTD') : 'Belum Input',
       }
-    },
-    { id: 2, name: 'Dinas Kesehatan', code: 'DINKES', status: 'Dalam Review', lead: 'dr. Yana Yanti Suleman, SH',
-      data: {
-        visi: 'Meningkatkan pelayanan kesehatan masyarakat yang responsif dan inklusif di Provinsi Gorontalo.',
-        sasaran: 'Menurunkan Prevalensi Penyakit Menular dan Angka Kematian Ibu',
-        ikuCount: 12, pkStatus: 'Belum TTD'
-      }
-    },
-    { id: 3, name: 'Dinas Pendidikan', code: 'DIKBUDPORA', status: 'Draft', lead: 'Dr. Wahyudin Katili, S.STP, ME',
-      data: {
-        visi: 'Terciptanya Generasi Unggul Berbudaya melalui Akses Pendidikan Merata dan Berkualitas.',
-        sasaran: 'Meningkatkan Angka Partisipasi Sekolah dan Kualitas Pendidik',
-        ikuCount: 18, pkStatus: 'Belum TTD'
-      }
-    },
-    { id: 4, name: 'Inspektorat', code: 'INSPEKTORAT', status: 'Verifikasi Selesai', lead: 'Nirwan Utiarahman, SE, MM',
-      data: {
-        visi: 'Mewujudkan Pengawasan Internal Pemerintah Provinsi Gorontalo yang Berintegritas dan Efektif.',
-        sasaran: 'Meningkatnya Akuntabilitas Tata Kelola Pemerintahan OPD',
-        ikuCount: 8, pkStatus: 'Sudah TTD'
-      }
-    },
-    { id: 5, name: 'Bappeda', code: 'BAPPEDA', status: 'Dalam Review', lead: 'Budiyanto Sidiki, S.Sos, M.Si',
-      data: {
-        visi: 'Pusat Perencanaan Pembangunan Berbasis Data Menuju Pembangunan yang Berkelanjutan.',
-        sasaran: 'Meningkatnya Kualitas Dokumen Perencanaan Pembangunan Daerah',
+    };
+  });
+atnya Kualitas Dokumen Perencanaan Pembangunan Daerah',
         ikuCount: 10, pkStatus: 'Belum TTD'
       }
     },

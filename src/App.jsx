@@ -12,6 +12,7 @@ import PohonKinerja from './pages/PohonKinerja';
 import Placeholder from './pages/Placeholder';
 import Admin from './pages/Admin';
 import PerjanjianKinerja from './pages/PerjanjianKinerja';
+import KamusIndikator from './pages/KamusIndikator';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="perencanaan/visi" element={<VisiRenstra user={user} />} />
           <Route path="perencanaan/sasaran" element={<SasaranRenstra user={user} />} />
           <Route path="perencanaan/pk" element={<PerjanjianKinerja user={user} />} />
+          <Route path="/referensi/kamus" element={<KamusIndikator user={user} />} />
 
           <Route path="laporan" element={<Laporan user={user} />} />
           <Route path="laporan/renstra" element={<LaporanDetail user={user} />} />
