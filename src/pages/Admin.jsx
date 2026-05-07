@@ -110,11 +110,6 @@ function Admin({ user }) {
       }
     };
   });
-atnya Kualitas Dokumen Perencanaan Pembangunan Daerah',
-        ikuCount: 10, pkStatus: 'Belum TTD'
-      }
-    },
-  ];
 
   const adminMenu = [
     { id: 'daftar-opd', label: 'Daftar OPD', icon: <Building2 size={20} /> },
