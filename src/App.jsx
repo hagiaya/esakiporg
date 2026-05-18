@@ -9,6 +9,7 @@ import VisiRenstra from './pages/VisiRenstra';
 import SasaranRenstra from './pages/SasaranRenstra';
 import LaporanDetail from './pages/LaporanDetail';
 import PohonKinerja from './pages/PohonKinerja';
+import Konsultasi from './pages/Konsultasi';
 import Placeholder from './pages/Placeholder';
 import Admin from './pages/Admin';
 import PerjanjianKinerja from './pages/PerjanjianKinerja';
@@ -48,6 +49,7 @@ function App() {
         >
           <Route index element={<Dashboard user={user} />} />
           <Route path="pohon-kinerja" element={<PohonKinerja user={user} />} />
+          <Route path="konsultasi" element={<Konsultasi user={user} />} />
           <Route path="perencanaan/visi" element={<VisiRenstra user={user} />} />
           <Route path="perencanaan/sasaran" element={<SasaranRenstra user={user} />} />
           <Route path="perencanaan/pk" element={<PerjanjianKinerja user={user} />} />

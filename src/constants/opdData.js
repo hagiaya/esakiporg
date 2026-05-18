@@ -37,6 +37,8 @@ export const OPD_LIST = [
 
 export const USERS = [
   { username: 'admin', password: 'password123', name: 'Administrator SAKIP', role: 'ADMIN', code: 'ADMIN' },
+  { username: 'admin@biroganisasi.go.id', password: 'biro123', name: 'Admin Biro Organisasi', role: 'ADMIN', code: 'BIRO_ORG' },
+  { username: 'sakipemprov@atomicmail.io', password: 'Sakip123@#', name: 'Admin Pemprov Gorontalo', role: 'ADMIN', code: 'BIRO_ORG' },
   ...OPD_LIST.map(opd => ({
     username: opd.code.toLowerCase(),
     password: 'password123',

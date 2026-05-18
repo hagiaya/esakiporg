@@ -1,15 +1,19 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   ClipboardCheck, 
   GitBranch, 
   Printer,
   TrendingUp,
   ArrowUpRight,
-  ShieldCheck
+  ShieldCheck,
+  MessageSquare
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function Dashboard({ user }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = `Dashboard | ${user?.name || 'e-SETDA'}`;
   }, [user]);
@@ -64,9 +68,18 @@ function Dashboard({ user }) {
               ? 'Terdapat 12 dokumen perencanaan yang memerlukan tinjauan hari ini.' 
               : 'Pastikan data perencanaan dan laporan triwulan Anda telah diperbarui sesuai jadwal.'}
           </p>
-          <button className="btn btn-primary banner-btn">
-            {isAdmin ? 'Mulai Review Perencanaan' : 'Update Laporan'} <ArrowUpRight size={18} />
-          </button>
+          <div className="flex gap-md" style={{ flexWrap: 'wrap', gap: '0.75rem' }}>
+            <button className="btn btn-primary banner-btn" onClick={() => navigate(isAdmin ? '/admin' : '/laporan')}>
+              {isAdmin ? 'Mulai Review Perencanaan' : 'Update Laporan'} <ArrowUpRight size={18} />
+            </button>
+            <button 
+              className="btn btn-secondary banner-btn-secondary" 
+              onClick={() => navigate('/konsultasi')}
+              style={{ background: 'rgba(255, 255, 255, 0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}
+            >
+              Konsultasi Online SAKIP <MessageSquare size={18} />
+            </button>
+          </div>
         </div>
         <div className="banner-icon">
           <ShieldCheck size={120} />

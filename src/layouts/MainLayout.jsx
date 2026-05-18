@@ -11,7 +11,8 @@ import {
   X,
   GitBranch,
   Printer,
-  ShieldCheck
+  ShieldCheck,
+  MessageSquare
 } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
@@ -54,6 +55,7 @@ const menuItems = [
       ]
     },
     { name: 'Pohon Kinerja', icon: <GitBranch size={20} />, path: '/pohon-kinerja' },
+    { name: 'Konsultasi Online', icon: <MessageSquare size={20} />, path: '/konsultasi' },
     { 
       name: 'Pusat Laporan', 
       icon: <Printer size={20} />, 
